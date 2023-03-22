@@ -53,6 +53,28 @@ class TraceApi(Client):
     :return:
     '''
 
+    def follower_order(self, symbol, productType, pageSize=20, pageNo=1):
+        params = {}
+        if symbol:
+            params["symbol"] = symbol
+            params["productType"] = productType
+            params["pageSize"] = pageSize
+            params["pageNo"] = pageNo
+            return self._request_with_params(GET, MIX_TRACE_V1_URL + '/followerOrder', params)
+        else:
+            return "pls check args "
+
+    '''
+    交易员获取当前带单
+    symbol: 交易对名称
+    startTime: 开始时间
+    endTime: 结束时间
+    pageSize: 查询条数
+    pageNo: 查询页数
+    :return:
+    '''
+    
+
     def history_track(self, startTime, endTime, pageSize=100, pageNo=1):
         params = {}
         if startTime and endTime:
